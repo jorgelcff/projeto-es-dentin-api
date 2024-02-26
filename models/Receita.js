@@ -3,7 +3,6 @@ import {sequelize} from '../config/database.js';
 
 import {Dentista} from './Dentista.js';
 import {Consulta} from './Consulta.js';
-
 export const Receita = sequelize.define('Receita', {
     pkReceita: {
         type: DataTypes.INTEGER,

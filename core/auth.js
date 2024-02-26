@@ -48,11 +48,11 @@ export async function autenticar(email, senha, plataforma = 'app') {
   }
 
   console.log('senha', senha, usuario.senha)
-  if (!verificarSenha(senha, usuario.senha)) {
-    return null;
+  if (await verificarSenha(senha, usuario.senha)) {
+    return usuario;
   }
+  return null;
 
-  return usuario;
 }
 
 export function criarTokenAcesso(sub) {
