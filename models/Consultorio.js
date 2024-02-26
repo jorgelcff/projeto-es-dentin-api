@@ -8,11 +8,6 @@ export const Consultorio = sequelize.define('Consultorio', {
         primaryKey: true,
         autoIncrement: true
     },
-    salas: {
-        type: DataTypes.STRING(45),
-        allowNull: false,
-        unique: true
-    },
     uf: {
         type: DataTypes.STRING(2),
         allowNull: false
@@ -30,14 +25,14 @@ export const Consultorio = sequelize.define('Consultorio', {
         allowNull: false
     },
     endereco: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(10),
         allowNull: false
     },
     logradouro: {
         type: DataTypes.STRING(15),
         allowNull: false
     },
-    horarios: {
+    funcionamento: {
         type: DataTypes.STRING(45),
         allowNull: false
     },
@@ -49,10 +44,6 @@ export const Consultorio = sequelize.define('Consultorio', {
         type: DataTypes.STRING(70),
         allowNull: true
     },
-    consultoriocol: {
-        type: DataTypes.STRING(45),
-        allowNull: true
-    }
 }, {
     tableName: 'consultorios',
     timestamps: false

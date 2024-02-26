@@ -14,10 +14,6 @@ export const Paciente = sequelize.define('Paciente', {
         type: DataTypes.STRING(60),
         allowNull: false
     },
-    user: {
-        type: DataTypes.STRING(60),
-        allowNull: false
-    },
     email: {
         type: DataTypes.STRING(60),
         allowNull: false,
@@ -28,7 +24,7 @@ export const Paciente = sequelize.define('Paciente', {
         allowNull: false
     },
     telefone: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(12),
         allowNull: false,
         unique: true
     },
@@ -37,17 +33,17 @@ export const Paciente = sequelize.define('Paciente', {
         allowNull: true
     },
     sexo: {
-        type: DataTypes.STRING(2),
+        type: DataTypes.STRING(1),
         defaultValue: 'N',
         allowNull: true
     },
     cidade: {
         type: DataTypes.STRING(25),
-        allowNull: true
+        allowNull: false
     },
     uf: {
         type: DataTypes.STRING(25),
-        allowNull: true
+        allowNull: false
     },
     bairro: {
         type: DataTypes.STRING(25),
@@ -58,28 +54,24 @@ export const Paciente = sequelize.define('Paciente', {
         allowNull: true
     },
     endereco: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(10),
         allowNull: true
     },
     fkConvenio: {
         type: DataTypes.INTEGER,
         allowNull: true,
-        references: {
-            model: 'convenios',
-            key: 'pkConvenio'
-        }
     },
     cardiaco: {
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        allowNull: true
     },
     diabetico: {
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        allowNull: true
     },
     alergico: {
         type: DataTypes.STRING(45),
-        allowNull: false
+        allowNull: true
     }
 }, {
     tableName: 'pacientes',

@@ -14,10 +14,6 @@ export const Dentista = sequelize.define('Dentista', {
         type: DataTypes.STRING(60),
         allowNull: false
     },
-    user: {
-        type: DataTypes.STRING(15),
-        allowNull: false
-    },
     email: {
         type: DataTypes.STRING(60),
         allowNull: false,
@@ -28,17 +24,17 @@ export const Dentista = sequelize.define('Dentista', {
         allowNull: false
     },
     cpf: {
-        type: DataTypes.INTEGER(11),
+        type: DataTypes.STRING(11),
         allowNull: false,
         unique: true
     },
     rg: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(12),
         allowNull: false,
         unique: true
     },
     cro: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(15),
         allowNull: false,
         unique: true
     },
@@ -50,12 +46,8 @@ export const Dentista = sequelize.define('Dentista', {
         type: DataTypes.STRING(15),
         allowNull: true
     },
-    especialidade3: {
-        type: DataTypes.STRING(15),
-        allowNull: true
-    },
     telefone: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(12),
         allowNull: false,
         unique: true
     },
@@ -64,7 +56,7 @@ export const Dentista = sequelize.define('Dentista', {
         allowNull: false
     },
     sexo: {
-        type: DataTypes.STRING(2),
+        type: DataTypes.STRING(1),
         allowNull: false
     },
     uf: {
@@ -84,16 +76,12 @@ export const Dentista = sequelize.define('Dentista', {
         allowNull: false
     },
     endereco: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(10),
         allowNull: false
     },
     fkConvenio: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-            model: 'convenios',
-            key: 'pkConvenio'
-        }
     }
 }, {
     tableName: 'dentistas',

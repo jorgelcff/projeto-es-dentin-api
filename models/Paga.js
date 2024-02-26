@@ -4,26 +4,26 @@ import {sequelize} from '../config/database.js';
 import {Convenio} from './Convenio.js';
 import {Paciente} from './Paciente.js';
 
-export const Atendido = sequelize.define('Atendido', {
+export const Paga = sequelize.define('Atendido', {
     fkPaciente: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
     },
     fkConvenio: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
     },
     admissao: {
         type: DataTypes.DATE,
         allowNull: true,
     }
 }, {
-    tableName: 'atendidos',
+    tableName: 'paga_conv',
     timestamps: false
 });
 
-Atendido.belongsTo(Paciente, { foreignKey: 'fkPaciente', targetKey: 'pkPaciente' });
-Atendido.belongsTo(Convenio, { foreignKey: 'fkConvenio', targetKey: 'pkConvenio' });
+Paga.belongsTo(Paciente, { foreignKey: 'fkPaciente', targetKey: 'pkPaciente' });
+Paga.belongsTo(Convenio, { foreignKey: 'fkConvenio', targetKey: 'pkConvenio' });
 
 
 //module.exports = Atendido;

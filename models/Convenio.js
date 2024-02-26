@@ -10,7 +10,7 @@ export const Convenio = sequelize.define('Convenio', {
     },
     nome: {
         type: DataTypes.STRING(45),
-        allowNull: false
+        allowNull: true
     }
 }, {
     tableName: 'convenios',
