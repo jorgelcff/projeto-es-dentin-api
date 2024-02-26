@@ -4,7 +4,7 @@ import {sequelize} from '../config/database.js';
 import {Convenio} from './Convenio.js';
 import {Paciente} from './Paciente.js';
 
-export const Paga = sequelize.define('Atendido', {
+export const Paga = sequelize.define('Paga', {
     fkPaciente: {
         type: DataTypes.INTEGER,
         allowNull: false,
