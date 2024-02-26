@@ -7,18 +7,18 @@ import {Dentista} from './Dentista.js';
 export const Atende = sequelize.define('Atende', {
     fkDentista: {
         type: DataTypes.INTEGER,
-        allowNull: true, 
+        allowNull: false, 
     },
     fkConsultorio: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    disponibilidade: {
+    expediente: {
         type: DataTypes.STRING(100),
         allowNull: false
     }
 }, {
-    tableName: 'atendes',
+    tableName: 'atende_consul',
     timestamps: false
 });
 

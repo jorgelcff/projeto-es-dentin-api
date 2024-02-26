@@ -32,15 +32,15 @@ export const Relatorio = sequelize.define('Relatorio', {
     },
     processoDoenca: {
         type: DataTypes.STRING(45),
-        allowNull: false
+        allowNull: true
     },
     cuidadoAparelho: {
         type: DataTypes.STRING(45),
-        allowNull: false
+        allowNull: true
     },
     acidente: {
         type: DataTypes.STRING(45),
-        allowNull: false
+        allowNull: true
     },
     dataEmissao: {
         type: DataTypes.DATE,

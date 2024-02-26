@@ -4,6 +4,8 @@ import {sequelize} from '../config/database.js';
 import {Paciente} from './Paciente.js';
 import {Dentista} from './Dentista.js';
 import {Consultorio} from './Consultorio.js';
+import {Sala} from './Sala.js';
+
 
 export const Consulta = sequelize.define('Consulta', {
   pkConsulta: {
@@ -14,7 +16,7 @@ export const Consulta = sequelize.define('Consulta', {
   },
   fkPaciente: {
       type: DataTypes.INTEGER,
-      allowNull: true, 
+      allowNull: true 
   },
   dataConsulta: {
       type: DataTypes.DATE,
@@ -22,7 +24,7 @@ export const Consulta = sequelize.define('Consulta', {
   },
   fkDentista: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: true
   },
   tipo: {
       type: DataTypes.STRING(45),
@@ -30,16 +32,15 @@ export const Consulta = sequelize.define('Consulta', {
   },
   orientacoes: {
       type: DataTypes.STRING(200),
-      allowNull: false
+      allowNull: true
   },
   preco: {
       type: DataTypes.DOUBLE,
-      allowNull: false
+      allowNull: true
   },
   sala: {
-      type: DataTypes.STRING(15),
+      type: DataTypes.STRING(10),
       allowNull: false,
-      unique: true
   },
   status: {
       type: DataTypes.STRING(10),
@@ -48,7 +49,6 @@ export const Consulta = sequelize.define('Consulta', {
   fkConsultorio: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true
   }
 }, {
   tableName: 'consultas',
@@ -59,6 +59,7 @@ export const Consulta = sequelize.define('Consulta', {
 Consulta.belongsTo(Paciente, { foreignKey: 'fkPaciente', targetKey: 'pkPaciente' });
 Consulta.belongsTo(Dentista, { foreignKey: 'fkDentista', targetKey: 'pkDentista' });
 Consulta.belongsTo(Consultorio, { foreignKey: 'fkConsultorio', targetKey: 'pkConsultorio' });
+Consulta.belongsTo(Sala, { foreignKey: 'sala', targetKey: 'num' });
 
 
 //module.exports = Consulta;
