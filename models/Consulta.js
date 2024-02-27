@@ -59,7 +59,7 @@ export const Consulta = sequelize.define('Consulta', {
 Consulta.belongsTo(Paciente, { foreignKey: 'fkPaciente', targetKey: 'pkPaciente' });
 Consulta.belongsTo(Dentista, { foreignKey: 'fkDentista', targetKey: 'pkDentista' });
 Consulta.belongsTo(Consultorio, { foreignKey: 'fkConsultorio', targetKey: 'pkConsultorio' });
-Consulta.belongsTo(Sala, { foreignKey: 'sala', targetKey: 'num' });
+Consulta.belongsTo(Sala, { foreignKey: 'sala', targetKey: 'num'});
 
 
 //module.exports = Consulta;

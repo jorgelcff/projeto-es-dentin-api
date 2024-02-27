@@ -20,7 +20,7 @@ export const Dentista = sequelize.define('Dentista', {
         unique: true
     },
     senha: {
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING(255),
         allowNull: false
     },
     cpf: {

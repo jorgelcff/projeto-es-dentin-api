@@ -2,6 +2,7 @@ import express from 'express';
 
 import { pacienteRoute } from './routes/Paciente.routes.js';
 import { userRoute } from './core/auth.js';
+import { dentistaRoute } from './routes/Dentista.routes.js';
 
 
 const app = express();
@@ -11,6 +12,10 @@ app.use(express.json());
 
 // Rotas relacionadas aos pacientes
 app.use('/pacientes', pacienteRoute);
+app.use('/usuarios', userRoute);
+
+// Rotas relacionadas aos dentistas
+app.use('/dentistas', dentistaRoute);
 app.use('/usuarios', userRoute);
 
 // Porta em que o servidor irá escutar
