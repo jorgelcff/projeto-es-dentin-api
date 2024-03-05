@@ -26,19 +26,10 @@ export const Receita = sequelize.define('Receita', {
         type: DataTypes.INTEGER,
         allowNull: false,
         unique: true,
-        references: {
-            model: 'consultas',
-            key: 'pkConsulta'
-        }
     },
     fkCRO: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(15),
         allowNull: false,
-        unique: true,
-        references: {
-            model: 'dentistas',
-            key: 'cro'
-        }
     }
 }, {
     tableName: 'receitas',

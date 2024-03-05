@@ -7,18 +7,18 @@ import {Dentista} from './Dentista.js';
 export const Aceita = sequelize.define('Aceita', {
     fkConvenio: {
         type: DataTypes.INTEGER,
-        allowNull: true, 
+        allowNull: false, 
     },
     fkDentista: {
         type: DataTypes.INTEGER,
-        allowNull: true, 
+        allowNull: false, 
     },
     admissao: {
         type: DataTypes.DATE,
         allowNull: true,
     }
 }, {
-    tableName: 'aceitas',
+    tableName: 'aceita_conv',
     timestamps: false
 });
 
