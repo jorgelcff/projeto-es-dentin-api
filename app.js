@@ -9,6 +9,7 @@ import { salaRoute } from './routes/Sala.route.js';
 import { consultaRoute } from './routes/Consulta.route.js';
 import { receitaRoute } from './routes/Receita.route.js';
 import { aceitaRoute } from './routes/AceitaConv.route.js';
+import { atendeRoute } from './routes/AtendeConsul.route.js';
 
 
 const app = express();
@@ -46,6 +47,10 @@ app.use('/usuarios', userRoute);
 
 // Rotas para relacionamento entre dentista e convênio
 app.use('/aceita', aceitaRoute);
+app.use('/usuarios', userRoute);
+
+// Rotas para relacionamento entre dentista e consultório
+app.use('/atende', atendeRoute);
 app.use('/usuarios', userRoute);
 
 // Porta em que o servidor irá escutar
