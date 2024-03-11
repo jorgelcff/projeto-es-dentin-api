@@ -10,13 +10,14 @@ export const Sala = sequelize.define('Sala', {
     },
     num: {
         type: DataTypes.STRING(10),
-        allowNull: false,
-        unique: true
+        allowNull: false
     }
+
 }, {
     tableName: 'salas',
     timestamps: false
 });
+
 
 
 Sala.belongsTo(Consultorio, { foreignKey: 'fkConsultorio', targetKey: 'pkConsultorio' });

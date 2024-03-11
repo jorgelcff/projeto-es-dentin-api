@@ -24,7 +24,7 @@ export const Aceita = sequelize.define('Aceita', {
 
 
 Aceita.belongsTo(Convenio, { foreignKey: 'fkConvenio', targetKey: 'pkConvenio' });
-Aceita.belongsTo(Dentista, { foreignKey: 'fkDentista', targetKey: 'pkDentista' });
+Aceita.belongsTo(Dentista, { foreignKey: 'fkDentista', targetKey: 'pkDentista' , as: 'dentistas'});
 
 
 //module.exports = Aceita;
