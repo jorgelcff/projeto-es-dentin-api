@@ -1,6 +1,6 @@
 import yup from 'yup';
 
-export const ConsultorioSchemaBase = yup.object().shape({
+export const SalaSchemaBase = yup.object().shape({
     num: yup.string().required(),
-    fkConsultorio: yup.number.required()
+    fkConsultorio: yup.number().required()
 });
