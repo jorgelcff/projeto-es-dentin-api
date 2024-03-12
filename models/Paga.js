@@ -12,18 +12,14 @@ export const Paga = sequelize.define('Paga', {
     fkConvenio: {
         type: DataTypes.INTEGER,
         allowNull: false,
-    },
-    admissao: {
-        type: DataTypes.DATE,
-        allowNull: true,
     }
 }, {
     tableName: 'paga_conv',
     timestamps: false
 });
 
-Paga.belongsTo(Paciente, { foreignKey: 'fkPaciente', targetKey: 'pkPaciente' });
-Paga.belongsTo(Convenio, { foreignKey: 'fkConvenio', targetKey: 'pkConvenio' });
+Paga.belongsTo(Paciente, { foreignKey: 'fkPaciente', targetKey: 'pkPaciente', as: 'pacientes'});
+Paga.belongsTo(Convenio, { foreignKey: 'fkConvenio', targetKey: 'pkConvenio', as: 'convenios' });
 
 
 //module.exports = Atendido;

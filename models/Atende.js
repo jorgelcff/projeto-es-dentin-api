@@ -23,8 +23,8 @@ export const Atende = sequelize.define('Atende', {
 });
 
 
-Atende.belongsTo(Dentista, { foreignKey: 'fkDentista', targetKey: 'pkDentista' });
-Atende.belongsTo(Consultorio, { foreignKey: 'fkConsultorio', targetKey: 'pkConsultorio' });
+Atende.belongsTo(Dentista, { foreignKey: 'fkDentista', targetKey: 'pkDentista', as: 'dentistas'});
+Atende.belongsTo(Consultorio, { foreignKey: 'fkConsultorio', targetKey: 'pkConsultorio', as: 'consultorios' });
 
 
 //module.exports = Atende;

@@ -8,6 +8,10 @@ import { gerarHashSenha } from '../core/security.js';
 
 export const pacienteRoute = router();
 
+function normalizacao(texto) {
+    return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\s/g, '');
+}
+
 pacienteRoute.get('/', async (req, res) => {
     try {
       const pacientes = await Paciente.findAll({
@@ -38,6 +42,26 @@ pacienteRoute.post('/', async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
+
+//Rota para encontrar pacientes pelo seu nome
+pacienteRoute.get('/nome/:nome', async (req, res) => {
+    const nomeBuscado = normalizacao(req.params.nome)
+    try {
+      const pacientes = await Paciente.findAll({
+        attributes: { exclude:[ 'senha', 'cpf', 'email', 'rua', 'endereco', 'bairro']}
+      });
+      const pacientesFiltrados = pacientes.filter(paciente => normalizacao(paciente.nome) == nomeBuscado)
+
+  
+      const schema = PacienteSchemaBase.createBaseSchema();
+      await Promise.all(pacientesFiltrados.map(paciente => schema.validate(paciente)));
+  
+      res.json(pacientesFiltrados);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+});
+
 
 // Rota para obter detalhes de um paciente pelo ID
 pacienteRoute.get('/:id', async (req, res) => {

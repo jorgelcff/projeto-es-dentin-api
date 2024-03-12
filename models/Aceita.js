@@ -12,10 +12,6 @@ export const Aceita = sequelize.define('Aceita', {
     fkDentista: {
         type: DataTypes.INTEGER,
         allowNull: false, 
-    },
-    admissao: {
-        type: DataTypes.DATE,
-        allowNull: true,
     }
 }, {
     tableName: 'aceita_conv',
@@ -23,8 +19,8 @@ export const Aceita = sequelize.define('Aceita', {
 });
 
 
-Aceita.belongsTo(Convenio, { foreignKey: 'fkConvenio', targetKey: 'pkConvenio' });
-Aceita.belongsTo(Dentista, { foreignKey: 'fkDentista', targetKey: 'pkDentista' });
+Aceita.belongsTo(Convenio, { foreignKey: 'fkConvenio', targetKey: 'pkConvenio' , as: 'convenios'});
+Aceita.belongsTo(Dentista, { foreignKey: 'fkDentista', targetKey: 'pkDentista' , as: 'dentistas'});
 
 
 //module.exports = Aceita;

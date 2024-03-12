@@ -8,6 +8,10 @@ export const Consultorio = sequelize.define('Consultorio', {
         primaryKey: true,
         autoIncrement: true
     },
+    nome: {
+        type: DataTypes.STRING(25),
+        allowNull: false
+    },
     uf: {
         type: DataTypes.STRING(2),
         allowNull: false
@@ -30,10 +34,10 @@ export const Consultorio = sequelize.define('Consultorio', {
     },
     logradouro: {
         type: DataTypes.STRING(15),
-        allowNull: false
+        allowNull: true
     },
     funcionamento: {
-        type: DataTypes.STRING(45),
+        type: DataTypes.STRING(175),
         allowNull: false
     },
     complemento: {
