@@ -10,6 +10,11 @@ export const Paciente = sequelize.define('Paciente', {
         primaryKey: true,
         autoIncrement: true
     },
+    cpf: {
+        type: DataTypes.STRING(11),
+        allowNull: false,
+        unique: true
+    },
     nome: {
         type: DataTypes.STRING(60),
         allowNull: false

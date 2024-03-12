@@ -7,6 +7,10 @@ import { gerarHashSenha } from '../core/security.js';
 
 export const dentistaRoute = router();
 
+function normalizacao(texto) {
+    return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\s/g, '');
+}
+
 dentistaRoute.get('/', async (req, res) => {
     try {
       const dentistas = await Dentista.findAll({
@@ -21,6 +25,44 @@ dentistaRoute.get('/', async (req, res) => {
       res.status(500).json({ error: error.message });
     }
 });
+
+//Rota para encontrar dentistas atuantes em determinada cidade
+dentistaRoute.get('/cidade/:cidade', async (req, res) => {
+    const cidadeBuscada = normalizacao(req.params.cidade)
+    try {
+      const dentistas = await Dentista.findAll({
+        attributes: { exclude:[ 'senha', 'cpf', 'rg', 'email', 'rua', 'endereco', 'bairro']}
+      });
+      const dentistasFiltrados = dentistas.filter(dentista => normalizacao(dentista.cidade) === cidadeBuscada);
+
+      const schema = DentistaSchemaBase.createBaseSchema();
+      await Promise.all(dentistasFiltrados.map(dentista => schema.validate(dentista)));
+  
+      res.json(dentistasFiltrados);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+});
+
+//Rota para encontrar dentistas pelo seu nome
+dentistaRoute.get('/nome/:nome', async (req, res) => {
+    const nomeBuscado = normalizacao(req.params.nome)
+    try {
+      const dentistas = await Dentista.findAll({
+        attributes: { exclude:[ 'senha', 'cpf', 'rg', 'email', 'rua', 'endereco', 'bairro']}
+      });
+      const dentistasFiltrados = dentistas.filter(dentista => normalizacao(dentista.nome) == nomeBuscado)
+
+  
+      const schema = DentistaSchemaBase.createBaseSchema();
+      await Promise.all(dentistasFiltrados.map(dentista => schema.validate(dentista)));
+  
+      res.json(dentistasFiltrados);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+});
+
 
 // Rota para criar um novo dentista
 dentistaRoute.post('/', async (req, res) => {

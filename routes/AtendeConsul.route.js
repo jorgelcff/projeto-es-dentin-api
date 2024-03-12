@@ -21,13 +21,14 @@ atendeRoute.get('/dentistas/:fkConsultorio', async (req, res) => {
     const fkConsultorio = req.params.fkConsultorio;
 
     try {
-        const dentistas = await Atende.findAll({
+        const atendimentos = await Atende.findAll({
             where: { fkConsultorio: fkConsultorio },
-            exclude: ['fkConsultorio', 'fkDentista', 'admissao'],
+            attributes: {exclude: ['fkConsultorio', 'fkDentista', 'id']},
             include: [
-                { model: Dentista, attributes: ['nome', 'cro'], as: 'dentistas'}
+                { model: Dentista, attributes: ['nome'], as: 'dentistas'}
             ]
         });
+        const dentistas = atendimentos.map(atendimentos => atendimentos.dentistas)
         res.json(dentistas);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -35,17 +36,17 @@ atendeRoute.get('/dentistas/:fkConsultorio', async (req, res) => {
 });
 
 // Rota para obter todos os consultórios que determinado dentista trabalha
-atendeRoute.get('/consultas/:fkDentista', async (req, res) => {
+atendeRoute.get('/consultorios/:fkDentista', async (req, res) => {
     const fkDentista = req.params.fkDentista;
 
     try {
-        const consultas = await Atende.findAll({
+        const atendimentos = await Atende.findAll({
             where: { fkDentista: fkDentista },
-            include: [
-                { model: Consultorio, attributes: ['nome'] }
-            ]
+            attributes: {exclude: ['fkConsultorio', 'fkDentista', 'id']},
+            include: [{ model: Consultorio, attributes: ['nome'], as: 'consultorios'}]
         });
-        res.json(consultas);
+        const consultorios = atendimentos.map(atendimentos => atendimentos.consultorios)
+        res.json(consultorios);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

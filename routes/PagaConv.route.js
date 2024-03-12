@@ -2,7 +2,6 @@ import router from 'express';
 import { PagaConvSchemaBase } from "../schemas/PagaConv.schema.js";
 import { Paga } from "../models/Paga.js";
 import { Paciente } from '../models/Paciente.js';
-import { Convenio } from '../models/Convenio.js';
 
 export const pagaRoute = router();
 
@@ -21,12 +20,14 @@ pagaRoute.get('/pacientes/:fkConvenio', async (req, res) => {
     const fkConvenio = req.params.fkConvenio;
 
     try {
-        const pacientes = await Paga.findAll({
+        const contratos = await Paga.findAll({
             where: { fkConvenio: fkConvenio },
+            attributes: {exclude: ['fkPaciente', 'fkConvenio', 'id']},
             include: [
                 { model: Paciente, attributes: ['nome'], as: 'pacientes'}
             ]
         });
+        const pacientes = contratos.map(contratos => contratos.pacientes)
         res.json(pacientes);
     } catch (error) {
         res.status(500).json({ error: error.message });

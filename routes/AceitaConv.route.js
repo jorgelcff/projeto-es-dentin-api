@@ -21,13 +21,12 @@ aceitaRoute.get('/dentistas/:fkConvenio', async (req, res) => {
     const fkConvenio = req.params.fkConvenio;
 
     try {
-        const dentistas = await Aceita.findAll({
+        const aceitacoes = await Aceita.findAll({
             where: { fkConvenio: fkConvenio },
-            exclude: ['fkConvenio', 'fkDentista', 'admissao'],
-            include: [
-                { model: Dentista, attributes: ['nome', 'cro'], as: 'dentistas'}
-            ]
+            attributes:{exclude: ['id', 'fkConvenio', 'fkDentista']},
+            include: [{ model: Dentista, attributes: ['nome', 'cro'], as: 'dentistas'}]
         });
+        const dentistas = aceitacoes.map(aceitacoes => aceitacoes.dentistas)
         res.json(dentistas);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -39,12 +38,12 @@ aceitaRoute.get('/convenios/:fkDentista', async (req, res) => {
     const fkDentista = req.params.fkDentista;
 
     try {
-        const convenios = await Aceita.findAll({
+        const aceitacoes = await Aceita.findAll({
             where: { fkDentista: fkDentista },
-            include: [
-                { model: Convenio, attributes: ['nome'] }
-            ]
+            attributes:{exclude: ['id', 'fkConvenio', 'fkDentista']},
+            include: [{ model: Convenio, attributes: ['nome'], as : 'convenios' }]
         });
+        const convenios = aceitacoes.map(aceitacoes => aceitacoes.convenios)
         res.json(convenios);
     } catch (error) {
         res.status(500).json({ error: error.message });
