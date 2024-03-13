@@ -63,6 +63,25 @@ dentistaRoute.get('/nome/:nome', async (req, res) => {
     }
 });
 
+//Rota para encontrar dentistas de determinadas especialidades
+dentistaRoute.get('/especialidade/:especialidadeNN', async (req, res) => {
+    const espBuscada = normalizacao(req.params.especialidadeNN)
+    try {
+      const dentistas = await Dentista.findAll({
+        attributes: { exclude:[ 'senha', 'cpf', 'rg', 'email', 'rua', 'endereco', 'bairro']}
+      });
+      const dentistasFiltrados = dentistas.filter(dentista => normalizacao(dentista.especialidadeNN) || normalizacao(dentista.especialidade2)  == espBuscada)
+
+  
+      const schema = DentistaSchemaBase.createBaseSchema();
+      await Promise.all(dentistasFiltrados.map(dentista => schema.validate(dentista)));
+  
+      res.json(dentistasFiltrados);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+});
+
 
 // Rota para criar um novo dentista
 dentistaRoute.post('/', async (req, res) => {
