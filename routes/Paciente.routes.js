@@ -4,7 +4,7 @@ import {PacienteSchemaCreate} from '../schemas/Paciente.schema.js';
 import {PacienteSchemaDetails} from '../schemas/Paciente.schema.js';
 import { Paciente } from '../models/Paciente.js';	
 import { gerarHashSenha } from '../core/security.js';
-
+import { DenTin } from '../models/DenTin.js';
 
 export const pacienteRoute = router();
 
@@ -36,6 +36,13 @@ pacienteRoute.post('/', async (req, res) => {
         const paciente = {...req.body, senha:hashSenha}
         console.log('paciente', paciente);
         const pacienteatt = await Paciente.create(paciente);
+
+        // Criar automaticamente um registro em DenTin quando um novo paciente é criado
+        // Usando um hook 
+        await DenTin.create({
+            fkPaciente: pacienteatt.pkPaciente
+        });
+
         console.log('pacienteatt', pacienteatt);
         res.status(201).json({ message: 'Paciente criado com sucesso!' });
     } catch (error) {
@@ -114,6 +121,14 @@ pacienteRoute.delete('/:id', async (req, res) => {
         if (!paciente) {
             return res.status(404).json({ error: 'Paciente não encontrado.' });
         }
+
+        // Verifica se existem registros em DenTin relacionados a este paciente e os exclui
+        await DenTin.destroy({
+            where: {
+                fkPaciente: pacienteId
+            }
+        });
+
         await paciente.destroy(req.body);
 
         res.json({ message: 'Paciente removido com sucesso!' });

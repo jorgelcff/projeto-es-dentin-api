@@ -16,7 +16,7 @@ export const Relatorio = sequelize.define('Relatorio', {
     },
     historico: {
         type: DataTypes.STRING(45),
-        allowNull: false
+        allowNull: true
     },
     dores: {
         type: DataTypes.STRING(45),
@@ -27,7 +27,7 @@ export const Relatorio = sequelize.define('Relatorio', {
         allowNull: false
     },
     higiene: {
-        type: DataTypes.STRING(45),
+        type: DataTypes.JSONB,
         allowNull: false
     },
     processoDoenca: {

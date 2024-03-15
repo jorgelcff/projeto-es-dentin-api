@@ -10,7 +10,8 @@ import { consultaRoute } from './routes/Consulta.route.js';
 import { receitaRoute } from './routes/Receita.route.js';
 import { aceitaRoute } from './routes/AceitaConv.route.js';
 import { atendeRoute } from './routes/AtendeConsul.route.js';
-
+import { dentinRoute } from './routes/DenTin.route.js';
+import { relatorioRoute } from './routes/Relatorio.route.js';
 
 const app = express();
 
@@ -52,6 +53,15 @@ app.use('/usuarios', userRoute);
 // Rotas para relacionamento entre dentista e consultório
 app.use('/atende', atendeRoute);
 app.use('/usuarios', userRoute);
+
+// Rotas relacionadas ao DenTIn
+app.use('/dentins', dentinRoute);
+app.use('/usuarios', userRoute);
+
+// Rotas relacionadas aos Relatórios
+app.use('/relatorios', relatorioRoute);
+app.use('/usuarios', userRoute);
+
 
 // Porta em que o servidor irá escutar
 const PORT = process.env.PORT || 3000;
