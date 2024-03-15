@@ -198,31 +198,3 @@ relatorioRoute.delete('/dentin/:idDentin', async (req, res) => {
         res.status(500).json({ error: 'Erro interno do servidor.' });
     }
 });
-
-
-
-
-/*
-// Endpoint para receber as respostas do usuário e calcular o status do personagem
-router.post('/calcular-status/:idDentin', async (req, res) => {
-    try {
-        // Receba as respostas do usuário
-        const dentinId = req.params.idDentin;
-
-        // Calcule o peso total das respostas
-        const pesoTotal = calcularPesoTotal(escovado, fioDental, alimentacao, dor);
-
-        // Determine o status do personagem
-        const status = pesoTotal >= 4 ? 'Limpo' : 'Sujo';
-
-        // Atualize o status do personagem no banco de dados
-        await DenTin.update({ status: status }, { where: { id: req.params.id } });
-
-        // Retorne o status do personagem para o frontend
-        res.json({ status: status });
-    } catch (error) {
-        console.error('Erro ao calcular o status do personagem:', error);
-        res.status(500).json({ error: 'Erro interno do servidor.' });
-    }
-});
-*/
