@@ -8,14 +8,20 @@ export const DenTin = sequelize.define('DenTin', {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
+        autoIncrement: true
     },
     nome: {
         type: DataTypes.STRING(15),
-        allowNull: false
+        allowNull: true
     },
     status: {
         type: DataTypes.STRING(15),
-        allowNull: false
+        allowNull: false,
+        defaultValue: "Limpo"
+    },
+    fkPaciente: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
     }
 }, {
     tableName: 'dentins',
@@ -23,6 +29,6 @@ export const DenTin = sequelize.define('DenTin', {
 });
 
 
-DenTin.belongsTo(Paciente, { foreignKey: 'pkDenTin', targetKey: 'pkPaciente' });
+DenTin.belongsTo(Paciente, { foreignKey: 'fkPaciente', targetKey: 'pkPaciente' });
 
 //module.exports = DenTin;
