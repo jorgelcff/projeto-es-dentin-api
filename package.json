@@ -6,9 +6,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "create_tables": "node create_tables.js" ,
-    "start": "node app.js" ,
-    "start-app": "npm run create_tables && npm run start"
+    "seeders": "node seeders.js",
+    "create_tables": "node create_tables.js",
+    "start": "node app.js",
+    "start-app": "npm run create_tables && npm run seeders && npm run start"
   },
   "keywords": [],
   "author": "",
