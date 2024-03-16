@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
+import config from './config.json' assert {type: 'json'};
 
-export const sequelize = new Sequelize('dentinbd', 'postgres', 'senha123', {
-  host: 'localhost',
-  dialect: 'postgres',
-  port: '5432'
-});
+const env = process.env.NODE_ENV || 'development';
+const dbConfig = config[env];
+
+export const sequelize = new Sequelize(dbConfig);
