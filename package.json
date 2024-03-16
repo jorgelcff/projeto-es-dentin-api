@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "create_tables": "node create_tables.js" ,
+    "start": "node app.js" ,
+    "start-app": "npm run create_tables && npm run start"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +27,7 @@
     "yup": "^1.3.3"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.5.2",
     "nodemon": "^3.0.3"
   }
 }
