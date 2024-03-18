@@ -10,7 +10,7 @@ import {Paciente} from './models/Paciente.js';
 import {Receita} from './models/Receita.js';
 import {Relatorio} from './models/Relatorio.js';
 import {Atende} from './models/Atende.js';
-import { gerarHashSenha } from './core/security.js';
+import {gerarHashSenha} from './core/security.js';
 
 async function seed() {
   try {
@@ -28,7 +28,7 @@ async function seed() {
           senha: 'senha123',
           cpf: '88988144023',
           rg: '176865421',
-          cro: '123456789012345',
+          cro: '123456769012345',
           especialidadeNN: 'Ortodontia',
           especialidade2: 'Periodontia',
           telefone: '1234567899',
@@ -46,7 +46,7 @@ async function seed() {
           email: 'daniel@zambone.com',
           senha: 'senha456',
           cpf: '06645290039',
-          rg: '356742179',
+          rg: '316742179',
           cro: '68765432109876',
           especialidadeNN: 'Odontopediatria',
           especialidade2: 'Implantodontia',
@@ -63,13 +63,13 @@ async function seed() {
       {
           nome: 'Allyson Ryan',
           email: 'allyson@ryan.com',
-          senha: 'senha456',
+          senha: 'senha476',
           cpf: '12805563077',
           rg: '356742179',
           cro: '28765432109873',
           especialidadeNN: 'Endodontia',
           especialidade2: 'Implantodontia',
-          telefone: '0987654321',
+          telefone: '0987354321',
           dataNasc: new Date(),
           sexo: 'F',
           uf: 'RJ',
@@ -113,11 +113,11 @@ async function seed() {
 
 await Paciente.bulkCreate([
   {
-      cpf: '12345678901',
+      cpf: '12325678901',
       nome: 'João',
       email: 'joao@example.com',
-      senha: gerarHashSenha('123456'),
-      telefone: '1234567890',
+      senha: await gerarHashSenha('123456'),
+      telefone: '1234067890',
       dataNasc: '1990-01-01',
       sexo: 'M',
       cidade: 'São Paulo',
@@ -133,9 +133,9 @@ await Paciente.bulkCreate([
   {
       cpf: '98765432109',
       nome: 'Maria',
-      email: 'maria@example.com',
-      senha: gerarHashSenha('654321'),
-      telefone: '0987654321',
+      email: 'mariaa@example.com',
+      senha: await gerarHashSenha('654321'),
+      telefone: '0967654321',
       dataNasc: '1995-02-02',
       sexo: 'F',
       cidade: 'Rio de Janeiro',
@@ -152,8 +152,8 @@ await Paciente.bulkCreate([
       cpf: '71868179044',
       nome: 'Melk Victor',
       email: 'maria@example.com',
-      senha: gerarHashSenha('87654321'),
-      telefone: '0987654321',
+      senha: await gerarHashSenha('87654321'),
+      telefone: '0987654421',
       dataNasc: '1995-02-02',
       sexo: 'M',
       cidade: 'Recife',
