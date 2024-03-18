@@ -10,6 +10,7 @@ import {Paciente} from './models/Paciente.js';
 import {Receita} from './models/Receita.js';
 import {Relatorio} from './models/Relatorio.js';
 import {Atende} from './models/Atende.js';
+import { gerarHashSenha } from './core/security.js';
 
 async function seed() {
   try {
@@ -22,11 +23,11 @@ async function seed() {
 
     await Dentista.bulkCreate([
       {
-          nome: 'Dentista 1',
-          email: 'dentista1@example.com',
+          nome: 'Lucas Gabriel',
+          email: 'lucasgabriel@dentista.com',
           senha: 'senha123',
-          cpf: '12345678901',
-          rg: '123456789012',
+          cpf: '88988144023',
+          rg: '176865421',
           cro: '123456789012345',
           especialidadeNN: 'Ortodontia',
           especialidade2: 'Periodontia',
@@ -41,13 +42,32 @@ async function seed() {
           fkConvenio: 1
       },
       {
-          nome: 'Dentista 2',
-          email: 'dentista2@example.com',
+          nome: 'Daniel Zamboni',
+          email: 'daniel@zambone.com',
           senha: 'senha456',
-          cpf: '98765432109',
-          rg: '987654321098',
+          cpf: '06645290039',
+          rg: '356742179',
           cro: '68765432109876',
           especialidadeNN: 'Odontopediatria',
+          especialidade2: 'Implantodontia',
+          telefone: '0987654321',
+          dataNasc: new Date(),
+          sexo: 'F',
+          uf: 'RJ',
+          cidade: 'Rio de Janeiro',
+          bairro: 'Copacabana',
+          rua: 'Rua B',
+          endereco: '456',
+          fkConvenio: 2
+      },
+      {
+          nome: 'Allyson Ryan',
+          email: 'allyson@ryan.com',
+          senha: 'senha456',
+          cpf: '12805563077',
+          rg: '356742179',
+          cro: '28765432109873',
+          especialidadeNN: 'Endodontia',
           especialidade2: 'Implantodontia',
           telefone: '0987654321',
           dataNasc: new Date(),
@@ -96,7 +116,7 @@ await Paciente.bulkCreate([
       cpf: '12345678901',
       nome: 'João',
       email: 'joao@example.com',
-      senha: '123456',
+      senha: gerarHashSenha('123456'),
       telefone: '1234567890',
       dataNasc: '1990-01-01',
       sexo: 'M',
@@ -114,7 +134,7 @@ await Paciente.bulkCreate([
       cpf: '98765432109',
       nome: 'Maria',
       email: 'maria@example.com',
-      senha: '654321',
+      senha: gerarHashSenha('654321'),
       telefone: '0987654321',
       dataNasc: '1995-02-02',
       sexo: 'F',
@@ -127,6 +147,24 @@ await Paciente.bulkCreate([
       cardiaco: true,
       diabetico: false,
       alergico: 'Amendoim'
+  },
+  {
+      cpf: '71868179044',
+      nome: 'Melk Victor',
+      email: 'maria@example.com',
+      senha: gerarHashSenha('87654321'),
+      telefone: '0987654321',
+      dataNasc: '1995-02-02',
+      sexo: 'M',
+      cidade: 'Recife',
+      uf: 'PE',
+      bairro: 'Nova Descoberta',
+      rua: 'Rua do bobo',
+      endereco: '0',
+      fkConvenio: 1,
+      cardiaco: true,
+      diabetico: false,
+      alergico: 'Metal'
   }
 ]);
 
@@ -228,7 +266,6 @@ await Relatorio.bulkCreate([
       dataEmissao: new Date(),
       dataReferencia: new Date()
   },
-  // Add more seed data as needed
 ]);
 
 const atendes = [
