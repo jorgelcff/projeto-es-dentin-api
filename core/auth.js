@@ -23,7 +23,7 @@ userRoute.post('/login', async (req, res) => {
     }
 
     const token = criarTokenAcesso(usuario.id);
-    res.json({ access_token: token });
+    res.json({ access_token: token, usuario: usuario});
     
   } catch (error) {
     console.error('Erro ao autenticar usuário:', error);

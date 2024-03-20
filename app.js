@@ -12,15 +12,20 @@ import { aceitaRoute } from './routes/AceitaConv.route.js';
 import { atendeRoute } from './routes/AtendeConsul.route.js';
 import { dentinRoute } from './routes/DenTin.route.js';
 import { relatorioRoute } from './routes/Relatorio.route.js';
+import cors from 'cors';
 import { pagaRoute } from './routes/PagaConv.route.js';
+
 
 const app = express();
 
+// Ativação de cors para o compartilhamento de recursos
+app.use(cors())
 // Middleware para processar o corpo da requisição como JSON
 app.use(express.json());
 
 // Rotas relacionadas aos pacientes
 app.use('/pacientes', pacienteRoute);
+// Rotas relacionadas aos usuários
 app.use('/usuarios', userRoute);
 
 // Rotas relacionadas aos dentistas
