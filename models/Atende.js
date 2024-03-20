@@ -13,9 +13,33 @@ export const Atende = sequelize.define('Atende', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    expediente: {
-        type: DataTypes.STRING(100),
-        allowNull: false
+    seg: {
+        type: DataTypes.STRING(11),
+        allowNull: true
+    },
+    ter: {
+        type: DataTypes.STRING(11),
+        allowNull: true
+    },
+    qua: {
+        type: DataTypes.STRING(11),
+        allowNull: true
+    },
+    qui: {
+        type: DataTypes.STRING(11),
+        allowNull: true
+    },
+    sex: {
+        type: DataTypes.STRING(11),
+        allowNull: true
+    },
+    sab: {
+        type: DataTypes.STRING(11),
+        allowNull: true
+    },
+    dom:{
+        type: DataTypes.STRING(11),
+        allowNull: true
     }
 }, {
     tableName: 'atende_consul',

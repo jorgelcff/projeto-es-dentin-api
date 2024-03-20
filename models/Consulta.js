@@ -47,6 +47,14 @@ export const Consulta = sequelize.define('Consulta', {
   fkConsultorio: {
       type: DataTypes.INTEGER,
       allowNull: false,
+  },
+  comentario: {
+    type: DataTypes.STRING(300),
+    allowNull: true
+  },
+  avaliacao: {
+    type: DataTypes.INTEGER,
+    allowNull: true
   }
 }, {
   tableName: 'consultas',

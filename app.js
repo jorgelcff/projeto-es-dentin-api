@@ -10,48 +10,56 @@ import { consultaRoute } from './routes/Consulta.route.js';
 import { receitaRoute } from './routes/Receita.route.js';
 import { aceitaRoute } from './routes/AceitaConv.route.js';
 import { atendeRoute } from './routes/AtendeConsul.route.js';
+import { dentinRoute } from './routes/DenTin.route.js';
+import { relatorioRoute } from './routes/Relatorio.route.js';
+import cors from 'cors';
+import { pagaRoute } from './routes/PagaConv.route.js';
 
 
 const app = express();
 
+// Ativação de cors para o compartilhamento de recursos
+app.use(cors())
 // Middleware para processar o corpo da requisição como JSON
 app.use(express.json());
 
 // Rotas relacionadas aos pacientes
 app.use('/pacientes', pacienteRoute);
+// Rotas relacionadas aos usuários
 app.use('/usuarios', userRoute);
 
 // Rotas relacionadas aos dentistas
 app.use('/dentistas', dentistaRoute);
-app.use('/usuarios', userRoute);
 
 // Rotas relacionadas aos convênios
 app.use('/convenios', convenioRoute);
-app.use('/usuarios', userRoute);
 
 // Rotas relacionadas aos consultórios
 app.use('/consultorios', consultorioRoute);
-app.use('/usuarios', userRoute);
 
 // Rotas relacionadas as salas
 app.use('/salas', salaRoute);
-app.use('/usuarios', userRoute);
 
 // Rotas relacionadas as consultas
 app.use('/consultas', consultaRoute);
-app.use('/usuarios', userRoute);
 
 // Rotas relacionadas as receitas
 app.use('/receitas', receitaRoute);
-app.use('/usuarios', userRoute);
 
 // Rotas para relacionamento entre dentista e convênio
 app.use('/aceita', aceitaRoute);
-app.use('/usuarios', userRoute);
 
 // Rotas para relacionamento entre dentista e consultório
 app.use('/atende', atendeRoute);
-app.use('/usuarios', userRoute);
+
+// Rotas relacionadas ao DenTIn
+app.use('/dentins', dentinRoute);
+
+// Rotas relacionadas aos Relatórios
+app.use('/relatorios', relatorioRoute);
+
+// Rotas para relacionamento entre paciente e convênio
+app.use('/paga', pagaRoute);
 
 // Porta em que o servidor irá escutar
 const PORT = process.env.PORT || 3000;

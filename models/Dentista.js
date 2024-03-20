@@ -39,11 +39,11 @@ export const Dentista = sequelize.define('Dentista', {
         unique: true
     },
     especialidadeNN: {
-        type: DataTypes.STRING(15),
+        type: DataTypes.STRING(45),
         allowNull: false
     },
     especialidade2: {
-        type: DataTypes.STRING(15),
+        type: DataTypes.STRING(45),
         allowNull: true
     },
     telefone: {

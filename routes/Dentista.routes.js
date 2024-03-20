@@ -4,6 +4,10 @@ import { DentistaSchemaCreate } from '../schemas/Dentista.schema.js';
 import { DentistaSchemaDetails } from '../schemas/Dentista.schema.js';
 import { Dentista } from '../models/Dentista.js';	
 import { gerarHashSenha } from '../core/security.js';
+import { Consulta } from '../models/Consulta.js';
+import { Paciente } from '../models/Paciente.js';
+import { DenTin } from '../models/DenTin.js';
+import { Relatorio } from '../models/Relatorio.js';
 
 export const dentistaRoute = router();
 
@@ -52,6 +56,25 @@ dentistaRoute.get('/nome/:nome', async (req, res) => {
         attributes: { exclude:[ 'senha', 'cpf', 'rg', 'email', 'rua', 'endereco', 'bairro']}
       });
       const dentistasFiltrados = dentistas.filter(dentista => normalizacao(dentista.nome) == nomeBuscado)
+
+  
+      const schema = DentistaSchemaBase.createBaseSchema();
+      await Promise.all(dentistasFiltrados.map(dentista => schema.validate(dentista)));
+  
+      res.json(dentistasFiltrados);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+});
+
+//Rota para encontrar dentistas de determinadas especialidades
+dentistaRoute.get('/especialidade/:especialidadeNN', async (req, res) => {
+    const espBuscada = normalizacao(req.params.especialidadeNN)
+    try {
+      const dentistas = await Dentista.findAll({
+        attributes: { exclude:[ 'senha', 'cpf', 'rg', 'email', 'rua', 'endereco', 'bairro']}
+      });
+      const dentistasFiltrados = dentistas.filter(dentista => normalizacao(dentista.especialidadeNN) || normalizacao(dentista.especialidade2)  == espBuscada)
 
   
       const schema = DentistaSchemaBase.createBaseSchema();
@@ -138,3 +161,30 @@ dentistaRoute.delete('/:id', async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
+
+
+
+dentistaRoute.get('/:id/consultas', async (req, res) => {
+  try {
+    const dentistaId = req.params.id;
+    const dentista = await Dentista.findByPk(dentistaId);
+    if (!dentista) {
+      return res.status(404).json({ error: 'Dentista não encontrado.' });
+    }
+    const consultas = await Consulta.findAll({
+      where: {
+        fkDentista: dentistaId
+      }
+    });
+    const consultasComPaciente = await Promise.all(consultas.map(async consulta => {
+      const paciente = await Paciente.findByPk(consulta.fkPaciente);
+      const dentin = await DenTin.findAll({where: {fkPaciente: consulta.fkPaciente}});
+      const relatorio = await Relatorio.findOne({where: {fkDentin: dentin[0].pkDenTin}});
+      return { ...consulta.toJSON(), paciente, relatorio };
+    }));
+    res.json(consultasComPaciente);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
