@@ -12,9 +12,11 @@ import { aceitaRoute } from './routes/AceitaConv.route.js';
 import { atendeRoute } from './routes/AtendeConsul.route.js';
 import { dentinRoute } from './routes/DenTin.route.js';
 import { relatorioRoute } from './routes/Relatorio.route.js';
+import cors from 'cors';
 
 const app = express();
 
+app.use(cors())
 // Middleware para processar o corpo da requisição como JSON
 app.use(express.json());
 
@@ -64,7 +66,7 @@ app.use('/usuarios', userRoute);
 
 
 // Porta em que o servidor irá escutar
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });

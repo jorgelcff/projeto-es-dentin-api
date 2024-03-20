@@ -25,7 +25,7 @@ async function seed() {
       {
           nome: 'Lucas Gabriel',
           email: 'lucasgabriel@dentista.com',
-          senha: 'senha123',
+          senha: await gerarHashSenha('123456'),
           cpf: '88988144023',
           rg: '176865421',
           cro: '123456769012345',
@@ -44,7 +44,7 @@ async function seed() {
       {
           nome: 'Daniel Zamboni',
           email: 'daniel@zambone.com',
-          senha: 'senha456',
+          senha: await gerarHashSenha('123456'),
           cpf: '06645290039',
           rg: '316742179',
           cro: '68765432109876',
@@ -63,7 +63,7 @@ async function seed() {
       {
           nome: 'Allyson Ryan',
           email: 'allyson@ryan.com',
-          senha: 'senha476',
+          senha: await gerarHashSenha('123456'),
           cpf: '12805563077',
           rg: '356742177',
           cro: '28765432109873',
@@ -117,7 +117,7 @@ await Paciente.bulkCreate([
       nome: 'João',
       email: 'joao@example.com',
       senha: await gerarHashSenha('123456'),
-      telefone: '1234067890',
+      telefone: '1234067895',
       dataNasc: '1990-01-01',
       sexo: 'M',
       cidade: 'São Paulo',
@@ -236,7 +236,7 @@ await Receita.bulkCreate([
       medicamento: 'Medicamento 1',
       uso: 'Uso 1',
       fkConsulta: 1,
-      fkCRO: '123456789012345'
+      fkCRO: '28765432109873'
   }
   // Add more seed data as needed
 ]);
