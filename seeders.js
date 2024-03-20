@@ -78,12 +78,69 @@ async function seed() {
           rua: 'Rua B',
           endereco: '456',
           fkConvenio: 2
-      }
+      },
+      {
+        nome: 'Kiev Gama',
+        email: 'Kievgama@dentista.com',
+        senha: 'senha1234',
+        cpf: '52173237358',
+        rg: '526979138',
+        cro: '09876543214689',
+        especialidadeNN: 'Ortodontia',
+        especialidade2: 'Periodontia',
+        telefone: '1234506789',
+        dataNasc: new Date(),
+        sexo: 'M',
+        uf: 'DF',
+        cidade: 'Brasília',
+        bairro: 'Lago Norte',
+        rua: 'Rua F',
+        endereco: '091',
+        fkConvenio: 1
+    },
+    {
+      nome: 'Robson Fidalgo',
+      email: 'RobsonBD@dentista.com',
+      senha: 'senha404',
+      cpf: '64641959658',
+      rg: '383591897',
+      cro: '01928374651109',
+      especialidadeNN: 'Odontopediatria',
+      especialidade2: 'Implantodontia',
+      telefone: '0986542137',
+      dataNasc: new Date(),
+      sexo: 'M',
+      uf: 'SP',
+      cidade: 'São Paulo',
+      bairro: 'Centro',
+      rua: 'Rua Z',
+      endereco: '852',
+      fkConvenio: 3
+  },
+  {
+    nome: 'Hermano perrelli',
+    email: 'HermanoFSI@dentista.com',
+    senha: 'senha52',
+    cpf: '12671543627',
+    rg: '947186242',
+    cro: '56473829108349',
+    especialidadeNN: 'Endodontia',
+    especialidade2: 'Implantodontia',
+    telefone: '6127384950',
+    dataNasc: new Date(),
+    sexo: 'M',
+    uf: 'SP',
+    cidade: 'São Paulo',
+    bairro: 'Centro',
+    rua: 'Rua T',
+    endereco: '741',
+    fkConvenio: 2
+}
   ]);
 
   await Consultorio.bulkCreate([
     {
-        nome: 'Consultorio 1',
+        nome: 'Dentes Felizes Odontologia',
         uf: 'SP',
         cidade: 'São Paulo',
         bairro: 'Centro',
@@ -95,7 +152,7 @@ async function seed() {
         referencia: 'Em frente ao shopping'
     },
     {
-        nome: 'Consultorio 2',
+        nome: 'OdontoCare Prime',
         uf: 'RJ',
         cidade: 'Rio de Janeiro',
         bairro: 'Copacabana',
@@ -165,6 +222,24 @@ await Paciente.bulkCreate([
       cardiaco: true,
       diabetico: false,
       alergico: 'Metal'
+  },
+  {
+      cpf: '83750267108',
+      nome: 'Vinícius Cardoso',
+      email: 'ViniciusES@paciente.com',
+      senha: await gerarHashSenha('system32'),
+      telefone: '0967654321',
+      dataNasc: '1995-02-02',
+      sexo: 'M',
+      cidade: 'Recife',
+      uf: 'PE',
+      bairro: 'Cidade Universitária',
+      rua: 'Rua U',
+      endereco: '963',
+      fkConvenio: 1,
+      cardiaco: false,
+      diabetico: false,
+      alergico: null
   }
 ]);
 
