@@ -19,6 +19,8 @@ async function seed() {
       { nome: 'Convenio 1' },
       { nome: 'Convenio 2' },
       { nome: 'Convenio 3' },
+      { nome: 'Convenio 4' },
+      { nome: 'Convenio 5' }
   ]);
 
     await Dentista.bulkCreate([
@@ -135,6 +137,82 @@ async function seed() {
     rua: 'Rua T',
     endereco: '741',
     fkConvenio: 2
+},
+{
+  nome: "Bruno Fernandes",
+  email: "brunofernandes@gmail.com",
+  senha: "senha123",
+  cpf: "98765432198",
+  rg: "83334321",
+  cro: "98765432109876",
+  especialidadeNN: "Cirurgia Oral e Maxilofacial",
+  especialidade2: "Ortodontia",
+  telefone: "11987555321",
+  dataNasc: new Date(),
+  sexo: "M",
+  uf: "SP",
+  cidade: "São Paulo",
+  bairro: "Vila Mariana",
+  rua: "Rua X",
+  endereco: "123",
+  fkConvenio: 4
+},
+{
+  nome: "Carla Silva",
+  email: "carla.silva@example.com",
+  senha: "4enha12345",
+  cpf: "12345678901",
+  rg: "98765432",
+  cro: "12345678901234",
+  especialidadeNN: "Ortodontia",
+  especialidade2: "Cirurgia Oral e Maxilofacial",
+  telefone: "11997656321",
+  dataNasc: new Date(),
+  sexo: "F",
+  uf: "RJ",
+  cidade: "Rio de Janeiro",
+  bairro: "Copacabana",
+  rua: "Avenida Y",
+  endereco: "456",
+  fkConvenio: 3
+},
+{
+  nome: "João Santos",
+  email: "joao.santos@example.com",
+  senha: "senha456",
+  cpf: "98765432101",
+  rg: "12345678",
+  cro: "12345678904321",
+  especialidadeNN: "Cirurgia Oral e Maxilofacial",
+  especialidade2: "Implantodontia",
+  telefone: "11976543210",
+  dataNasc: new Date(),
+  sexo: "M",
+  uf: "SP",
+  cidade: "São Paulo",
+  bairro: "Moema",
+  rua: "Rua Z",
+  endereco: "789",
+  fkConvenio: 4
+},
+{
+  nome: "Ana Oliveira",
+  email: "ana.oliveira@example.com",
+  senha: "8senh45a789",
+  cpf: "12309876543",
+  rg: "87774321",
+  cro: "54321098765432",
+  especialidadeNN: "Ortodontia",
+  especialidade2: "Cirurgia Oral e Maxilofacial",
+  telefone: "11876543210",
+  dataNasc: new Date(),
+  sexo: "F",
+  uf: "MG",
+  cidade: "Belo Horizonte",
+  bairro: "Savassi",
+  rua: "Rua W",
+  endereco: "321",
+  fkConvenio: 5
 }
   ]);
 
@@ -163,6 +241,42 @@ async function seed() {
         complemento: 'Próximo à praia',
         referencia: 'Ao lado do hotel'
     },
+    {
+      nome: 'Sorriso Radiante Odontologia',
+      uf: 'RJ',
+      cidade: 'Rio de Janeiro',
+      bairro: 'Copacabana',
+      rua: 'Avenida Atlântica',
+      endereco: '456',
+      logradouro: 'Andar 10, Sala 1001',
+      funcionamento: 'Segunda a Sexta, das 8h às 20h',
+      complemento: 'Próximo à estação de metrô',
+      referencia: 'Ao lado do hotel XYZ'
+  },
+  {
+    nome: 'Dentes Saudáveis Odontologia',
+    uf: 'MG',
+    cidade: 'Belo Horizonte',
+    bairro: 'Savassi',
+    rua: 'Rua da Paz',
+    endereco: '789',
+    logradouro: 'Sala 202',
+    funcionamento: 'Segunda a Sábado, das 10h às 19h',
+    complemento: 'Próximo ao shopping ABC',
+    referencia: 'Ao lado da praça central'
+  },
+  {
+    nome: 'Dentes Saudáveis Odontologia',
+    uf: 'MG',
+    cidade: 'Belo Horizonte',
+    bairro: 'Savassi',
+    rua: 'Rua da Paz',
+    endereco: '789',
+    logradouro: 'Sala 202',
+    funcionamento: 'Segunda a Sábado, das 10h às 19h',
+    complemento: 'Próximo ao shopping ABC',
+    referencia: 'Ao lado da praça central'
+  }
 ]);
  
 
@@ -228,7 +342,7 @@ await Paciente.bulkCreate([
       nome: 'Vinícius Cardoso',
       email: 'ViniciusES@paciente.com',
       senha: await gerarHashSenha('system32'),
-      telefone: '0967654321',
+      telefone: '0967555321',
       dataNasc: '1995-02-02',
       sexo: 'M',
       cidade: 'Recife',
@@ -240,7 +354,61 @@ await Paciente.bulkCreate([
       cardiaco: false,
       diabetico: false,
       alergico: null
-  }
+  },
+  {
+    cpf: '83750267111',
+    nome: 'Maria Vitoria',
+    email: 'mariazinha@example.com',
+    senha: await gerarHashSenha('hashed55Senha123'),
+    telefone: '0967654111',
+    dataNasc: '1995-05-10',
+    sexo: 'F',
+    cidade: 'Rio de Janeiro',
+    uf: 'RJ',
+    bairro: 'Copacabana',
+    rua: 'Avenida Atlântica',
+    endereco: '456',
+    fkConvenio: 4,
+    cardiaco: true,
+    diabetico: false,
+    alergico: 'Amendoim'
+},
+{
+  cpf: '83750267222',
+  nome: 'Pedro',
+  email: 'pedropontes@example.com',
+  senha: await gerarHashSenha('hashed4Se5nha456'),
+  telefone: '0967654222',
+  dataNasc: '1988-12-20',
+  sexo: 'M',
+  cidade: 'São Paulo',
+  uf: 'SP',
+  bairro: 'Moema',
+  rua: 'Rua Z',
+  endereco: '789',
+  fkConvenio: 5,
+  cardiaco: false,
+  diabetico: true,
+  alergico: 'Penicilina'
+},
+{
+  cpf: '83750267444',
+  nome: 'Ana',
+  email: 'ana2324@example.com',
+  senha: await gerarHashSenha('hashed57Senha789'),
+  telefone: '0967654333',
+  dataNasc: '1980-07-15',
+  sexo: 'F',
+  cidade: 'Belo Horizonte',
+  uf: 'MG',
+  bairro: 'Savassi',
+  rua: 'Rua da Paz',
+  endereco: '321',
+  fkConvenio: 4,
+  cardiaco: true,
+  diabetico: true,
+  alergico: 'Penicilina'
+}
 ]);
 
         await Sala.bulkCreate([
